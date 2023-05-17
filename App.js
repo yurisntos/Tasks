@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+//paginas src
+
+import Menu  from './src/components/pages/Menu.js'; 
+import novaTask from './src/components/pages/NovaTask.js';
+
+const Pilha = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <NavigationContainer>
+            <Pilha.Navigator>
+                <Pilha.Screen name="Menu" component={Menu}/>
+                <Pilha.Screen name="NovaTask"  component={novaTask}></Pilha.Screen>
+                <Pilha.Screen name="listarTask"  component={ListarTask}></Pilha.Screen>
+            </Pilha.Navigator>
+        </NavigationContainer>
+    )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
