@@ -8,7 +8,6 @@ return(
     
         <View>
             <Botao titulo={"Tarefa"} acao={ () => navigation.navigate('Home')}/>
-            
         </View>
 );
 } 
