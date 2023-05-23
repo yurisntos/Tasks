@@ -1,36 +1,53 @@
 import React from 'react';
-import react from 'react';
+import{View, Text, StyleSheet} from 'react-native';
 import axios from 'axios';
 
-const tasks = ({ navigation, id}) => {
-    const [pagina, setTask] = react.useState(null);
+import Duty from '../components/Duty';
 
-    let baseApi = `https://localhost:/tarefas/${id}`;
+const Tasks = ({ navigation}) => {
+    const [tasks, setTasks] = React.useState(null);
+
+
+    let baseApi = ` http://localhost:3000/tasks`;
+
     React.useEffect(() => {
 
-        axios.get(baseApi)
+        axios
+        .get(baseApi)
 
         .then((response) => {
-            setTask(response.data)
+            setTasks(response.data)
         })
         .catch((error) => {
             alert('desculpe deu errado')
         })
-    })
-    if(!pagina ) return null
+    },[])
+   
 
-    return (
-        <View style={estilos.container}>
-        <View style={estilos.logo}>
-            <Text style={estilos.titulo}>{pagina.titulo}</Text>
-            <Text >{pagina.data}</Text>
-            <Text >{pagina.descricao}</Text>
-        </View>
+    if(!tasks ) return null
 
-        <View style={estilos.botoes}>
-            <Botao titulo="Voltar" acao={ () => navigation.navigate('Menu') } />
-            <Botao titulo="Editar" />
-        </View>
-    </View>    
-    )
+    const ListTasks = tasks.map(task => 
+        <Duty key={task.id} task={task} navigation={navigation} />
+    );
+       
+    return(
+        <View >
+            {ListTasks}
+        </View>    
+    );
 }
+
+const estilos = StyleSheet.create({
+    box: {
+        display: "flex",
+        padding: 5,
+        borderRadius: 10,
+        border:" 1px solid black",
+        margin: 10, 
+    },
+    title: {
+        fontSize: "2em",
+        fontFamily: "Arial",
+    }
+})
+export default Tasks 

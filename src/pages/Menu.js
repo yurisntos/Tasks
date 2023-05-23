@@ -1,15 +1,15 @@
-const Menu = ({ navigation }) => {
-    return (
-        <View style={estilos.container}>
-            <View style={estilos.logo}>
-                <Text style={estilos.titulo}>Minhas tarefas</Text>
-            </View>
+import React from 'react';
+import{View, Text, StyleSheet} from 'react-native';
+import Botao from '../components/botao';
 
-            <View style={estilos.botoes}>
-                <Botao titulo="Nova Tarefa" acao={ () => navigation.navigate('NovaTask')} />
-                <Botao titulo="Lista de Eventos" acao={ () => navigation.navigate('ListarTask')} />
-            </View>
+const Menu = ({ navigation }) => {
+
+return(
+    
+        <View>
+            <Botao titulo={"Tarefa"} acao={ () => navigation.navigate('Home')}/>
+            
         </View>
-    );
-}
-export default Menu; 
+);
+} 
+export default Menu;  
